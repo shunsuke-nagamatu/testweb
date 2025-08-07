@@ -151,7 +151,30 @@
 
 		</div>
 	</div>
+<div class="chat-container">
+  <div class="chat-header">チャットボット</div>
+  <div class="chat-messages" id="chatMessages">
+    <div id="webchat" role="main"></div>
+  </div>
+  <!-- 既存のカスタムUIは不要になる場合もある -->
+</div>
 
-	<iframe src='https://webchat.botframework.com/embed/test-webbot1520?s=FDtW14KWBwQ46XW7VKDphJRkiKSnSpB3UxEfRF3r2JoeO6Yy4V1IJQQJ99BHAC5RqLJAArohAAABAZBS1myf.7dwKy20S3ie0VXisT3SVX3ivVNEi91V4xzncrVMWLEux8mx0AfexJQQJ99BHAC5RqLJAArohAAABAZBS4WL5'  style='min-width: 400px; width: 100%; min-height: 500px;'></iframe>
+<!-- Azure Web Chat CDN -->
+<script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+
+<script>
+  const directLineSecret = 'D2hc1C7VvjtinMtIQvZtYXBvwf1OtA1bj08s9YzGseREdYSQAIYIJQQJ99BHAC5RqLJAArohAAABAZBS1iUp.DH1QGPGpl44XE0nHdDuPL2BU01pAoh5hQHTN83mDN97rDPjOV7v5JQQJ99BHAC5RqLJAArohAAABAZBS3G3Z'; // ←ここにDirect Lineシークレットを入れる
+
+  window.WebChat.renderWebChat(
+    {
+      directLine: window.WebChat.createDirectLine({ secret: directLineSecret }),
+      userID: 'user_' + Date.now(), // 任意のユーザーID
+      locale: 'ja-JP' // 日本語設定
+    },
+    document.getElementById('webchat')
+  );
+</script>
+
+	
 </body>
 </html>
