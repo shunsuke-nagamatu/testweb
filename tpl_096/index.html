@@ -148,39 +148,67 @@
 			<footer id="footer">
 				Copyright(c) 2016 Sample Inc. All Rights Reserved. Design by <a href="http://f-tpl.com" target="_blank">http://f-tpl.com</a><!-- ←クレジット表記を外す場合はシリアルキーが必要です http://f-tpl.com/credit/ -->
 			</footer>
-
-		</div>
-	</div>
-  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-  <style>
-    #webchat {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 350px;
-      height: 500px;
-      z-index: 1000;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-  </style>
-</head>
-<body>
-  <div id="webchat" role="main"></div>
-  <script>
-    window.WebChat.renderWebChat({
-      directLine: window.WebChat.createDirectLine({
-        token: '6sNLMMf0O7a9s5HoyWaWMJlCqqcXRdX0Os2DFKsALdNkqv8ezSgyJQQJ99BHACYeBjFAArohAAABAZBS12KV.6kpaf7PiWzUMvN5HzS6xmTBAUJ52GlEZb4TKerjTnqjiExW6ZwJkJQQJ99BHACYeBjFAArohAAABAZBS2hiy'
-      }),
-      styleOptions: {
-        botAvatarInitials: 'Bot',
-        userAvatarInitials: 'You',
-        hideUploadButton: true
-      }
-    }, document.getElementById('webchat'));
-  </script>
+ 
+<!-- Chatbot Toggle UI -->
+<script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+<style>
+#chat-container {
+position: fixed;
+bottom: 20px;
+right: 20px;
+z-index: 1000;
+}
+ 
+#toggle-button {
+background-color: #0078D4;
+color: white;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+margin-bottom: 5px;
+}
+ 
+#webchat {
+width: 350px;
+height: 500px;
+border: 1px solid #ccc;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 0 10px rgba(0,0,0,0.2);
+display: none;
+}
+</style>
+ 
+<div id="chat-container">
+<button id="toggle-button">チャットを開く</button>
+<div id="webchat" role="main"></div>
+</div>
+ 
+<script>
+const toggleButton = document.getElementById('toggle-button');
+const webchatDiv = document.getElementById('webchat');
+let isOpen = false;
+ 
+toggleButton.addEventListener('click', () => {
+isOpen = !isOpen;
+webchatDiv.style.display = isOpen ? 'block' : 'none';
+toggleButton.textContent = isOpen ? 'チャットを閉じる' : 'チャットを開く';
+});
+ 
+window.WebChat.renderWebChat({
+directLine: window.WebChat.createDirectLine({
+token: '6sNLMMf0O7a9s5HoyWaWMJlCqqcXRdX0Os2DFKsALdNkqv8ezSgyJQQJ99BHACYeBjFAArohAAABAZBS12KV.6kpaf7PiWzUMvN5HzS6xmTBAUJ52GlEZb4TKerjTnqjiExW6ZwJkJQQJ99BHACYeBjFAArohAAABAZBS2hiy'
+}),
+styleOptions: {
+botAvatarInitials: 'Bot',
+userAvatarInitials: 'You',
+hideUploadButton: true
+}
+}, webchatDiv);
+</script>
+ 
+ 
 
 	
 </body>
