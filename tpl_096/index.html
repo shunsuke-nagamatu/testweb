@@ -151,29 +151,36 @@
 
 		</div>
 	</div>
-<div class="chat-container">
-  <div class="chat-header">チャットボット</div>
-  <div class="chat-messages" id="chatMessages">
-    <div id="webchat" role="main"></div>
-  </div>
-  <!-- 既存のカスタムUIは不要になる場合もある -->
-</div>
-
-<!-- Azure Web Chat CDN -->
-<script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-
-<script>
-  const directLineSecret = 'D2hc1C7VvjtinMtIQvZtYXBvwf1OtA1bj08s9YzGseREdYSQAIYIJQQJ99BHAC5RqLJAArohAAABAZBS1iUp.DH1QGPGpl44XE0nHdDuPL2BU01pAoh5hQHTN83mDN97rDPjOV7v5JQQJ99BHAC5RqLJAArohAAABAZBS3G3Z'; // ←ここにDirect Lineシークレットを入れる
-
-  window.WebChat.renderWebChat(
-    {
-      directLine: window.WebChat.createDirectLine({ secret: directLineSecret }),
-      userID: 'user_' + Date.now(), // 任意のユーザーID
-      locale: 'ja-JP' // 日本語設定
-    },
-    document.getElementById('webchat')
-  );
-</script>
+  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+  <style>
+    #webchat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      z-index: 1000;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="webchat" role="main"></div>
+  <script>
+    window.WebChat.renderWebChat({
+      directLine: window.WebChat.createDirectLine({
+        token: '6sNLMMf0O7a9s5HoyWaWMJlCqqcXRdX0Os2DFKsALdNkqv8ezSgyJQQJ99BHACYeBjFAArohAAABAZBS12KV.6kpaf7PiWzUMvN5HzS6xmTBAUJ52GlEZb4TKerjTnqjiExW6ZwJkJQQJ99BHACYeBjFAArohAAABAZBS2hiy'
+      }),
+      styleOptions: {
+        botAvatarInitials: 'Bot',
+        userAvatarInitials: 'You',
+        hideUploadButton: true
+      }
+    }, document.getElementById('webchat'));
+  </script>
 
 	
 </body>
